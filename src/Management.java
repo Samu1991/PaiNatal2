@@ -69,6 +69,9 @@ public class Management {
                     day[choice[i]].setN_pessoas(day[choice[i]].getN_pessoas() + f.getN_members());
                     day[choice[i]].setN_familias(day[choice[i]].getN_familias() + 1);
 
+                    writeSelectDay(f);
+
+                    return true;
 
                     /*switch(i){
                         case 0:
@@ -106,21 +109,21 @@ public class Management {
                             break;
 
                     }*/
+/*
+
+            }
 
 
-           /* }
-                writeSelectDay(f);
 
 
-            return true;
 
         }
 
         return false;
     }*/
 
-    public boolean selectChoice(Family f) throws IOException, FamiliesAreEnough {
-        int[] choices = f.getChoice();
+   public boolean selectChoice(Family f) throws IOException, FamiliesAreEnough {
+        //int[] choices = f.getChoice();
 
         for (int i = 0; i < day.length; i++) {
             if (day[i].getN_pessoas() >= 0 && day[i].getN_pessoas() + f.getN_members() <= 300) {
@@ -129,30 +132,35 @@ public class Management {
                 familias[pos] = f;
                 writeSelectDay(f);
                 pos++;
+
                 day[i].setN_pessoas(day[i].getN_pessoas() + f.getN_members());
                 day[i].setN_familias(day[i].getN_familias() + 1);
-                for (int j = 0; j < choices.length; j++) {
-                    if (i == choices[j]) {
-                        f.setCost(gift_card[j]);
 
-                        //familias[pos] = f;
-                        //writeSelectDay(f);
-                        //pos++;
-                        return true;
-
-                    }
-                }
-
-                // calculateContabilityCost();
-
-                //  writeSelectDay(day[i]);
+                selectGiftCard(i,f);
                 return true;
+                }
             }
+        return false;
+        }
+
+
+    private void selectGiftCard(int i, Family family) {
+        int[] choices = family.getChoice();
+       // familias[pos] = family;
+       // pos++;
+
+        for (int j = 0; j < choices.length; j++) {
+            if (i == choices[j]) {
+                family.setCost(gift_card[j]);
+                break;
+            }
+            else{
+               family.setCost(800);
+           }
 
         }
-        return false;
-    }
 
+    }
     private FileWriter createFileFamilyChoices() throws IOException {
         FileWriter csvWriter = new FileWriter("family_choices.csv");
         csvWriter.append("family_id");
@@ -203,17 +211,17 @@ public class Management {
 
 
     public double calculateContabilityCost() throws ArrayIndexOutOfBoundsException{
-        double penaltyTemp1, penaltyTemp2, penalty = 0;
+        double penaltyTemp1 = 0;// penaltyTemp2, penalty = 0;
 
-        for(int i=0; i<=day.length;i++){
+        for(int i=100; i<=day.length-1;i++){
 
-            penaltyTemp1= ((day[i].getN_pessoas()/400)*day[i].getN_pessoas());
-            penaltyTemp2= ((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
+            penaltyTemp1= ((day[i].getN_pessoas()/400)*(day[i].getN_pessoas()))*((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
+            //penaltyTemp2= ((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
 
-            penalty= penaltyTemp1*penaltyTemp2;
+            //penalty= penaltyTemp1*penaltyTemp2;
         }
-        System.out.println(penalty);
-        return penalty;
+        System.out.println(penaltyTemp1);
+        return penaltyTemp1;
     }
 
 

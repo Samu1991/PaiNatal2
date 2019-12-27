@@ -21,7 +21,7 @@ public class PaiNatal_Manager {
         Family f1 = new Family(4,f1a);
         int[] f2a = {0,2,5,7,10,33,55,77,88,99};
         Family f2 = new Family(3,f2a);*/
-        int[] f3a = {0,1,5,7,10,33,55,77,88,99};
+        int[] f3a = {0, 1, 5, 7, 6, 33, 55, 77, 88, 99};
         // Family f3 = new Family(4,f3a);
         /*Family f4 = new Family(10,f3a);
         Family f5 = new Family(10,f3a);
@@ -35,33 +35,29 @@ public class PaiNatal_Manager {
         Family[] families = new Family[5000];
 
 
+        for (int i = 0; i < families.length; i++) {
 
-
-        for(int i=0; i<families.length;i++){
-
-            if(i==0){
+            if (i == 0) {
                 families[i] = new Family(6, f3a);
-            }else{
-                families[i]= new Family(6, f3a);
+            } else {
+                families[i] = new Family(6, f3a);
             }
             m.writeFamilyCSVFile(families[i]);
 
         }
 
 
-
-
-        for(int i =0; i<families.length; i++){
+        for (int i = 0; i < families.length; i++) {
             m.selectChoice(families[i]);
 
         }
 
 
-
-
-        //m.calculateContabilityCost();
-
-
+       // m.calculateContabilityCost();
+        System.out.println(families[255].getCost());
+        System.out.println(families[436].getCost());
+        System.out.println(families[1].getCost());
+        System.out.println(families[115].getCost());
         /*
         m.selectChoice(f1);
         m.selectChoice(f2);
@@ -74,5 +70,8 @@ public class PaiNatal_Manager {
 
         m.print();
         */
+
+
     }
+
 }
