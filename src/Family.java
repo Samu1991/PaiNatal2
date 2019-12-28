@@ -6,9 +6,11 @@ public class Family {
     private int[] choice;
     private double cost;
     private int finalchoice;
+    private int id;
 
-    public Family(int n_members, int[] choice) throws InvalidDayException, SizeOfFamily, SameDayInArray, InvalidID {
+    public Family(int n_members, int id, int[] choice) throws InvalidDayException, SizeOfFamily, SameDayInArray, InvalidID {
         this.n_members = setN_members(n_members);
+        this.id=setId(id);
         this.choice = setChoice(choice);
         this.cost = 0;
         this.finalchoice = 0;
@@ -18,7 +20,14 @@ public class Family {
     public Family() {
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public int setId(int id) {
+        this.id = id;
+        return id;
+    }
 
     public int getN_members() {
         return n_members;

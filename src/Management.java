@@ -199,26 +199,26 @@ public class Management {
         String str = null;
         BufferedWriter out = new BufferedWriter(new FileWriter("choice.csv", true));
         double contabilidade_cost = 30;//calculateContabilityCost();
-        //for (int i = 0; i < familias.length && familias[i] != null; i++) {
-        //str = idchoice + "," + familias[i].getFinalchoice() + "," + contabilidade_cost + "\n";
-        str= idchoice+ "," + f.getFinalchoice() + "," + contabilidade_cost +"\n";
-        idchoice++;
-        //}
+        str= f.getId()+ "," + f.getFinalchoice() + "," + contabilidade_cost +"\n";
 
         out.write(str);
         out.close();
-    } //calculateContabilityCost();
+    }
 
 
     public double calculateContabilityCost() throws ArrayIndexOutOfBoundsException{
         double penaltyTemp1 = 0;// penaltyTemp2, penalty = 0;
 
-        for(int i=100; i<=day.length-1;i++){
+        for(int i=99; i<=day.length-1;i--){
 
-            penaltyTemp1= ((day[i].getN_pessoas()/400)*(day[i].getN_pessoas()))*((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
-            //penaltyTemp2= ((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
+            if(i==99){
+                penaltyTemp1= ((day[i].getN_pessoas()-125/400)*(day[i].getN_pessoas()))*((0.5)+(Math.abs(day[i].getN_pessoas()- day[i].getN_pessoas())/50));
+                break;
+            }else{
 
-            //penalty= penaltyTemp1*penaltyTemp2;
+
+                penaltyTemp1= penaltyTemp1 + ((day[i].getN_pessoas()/400)*(day[i].getN_pessoas()))*((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
+            }
         }
         System.out.println(penaltyTemp1);
         return penaltyTemp1;
@@ -251,14 +251,14 @@ public class Management {
         BufferedWriter out = new BufferedWriter(new FileWriter("family_choices.csv", true));
 
 
-        str = id + ",";
+        str = f.getId() + ",";
         //str = f.getId() + ",";
         for (int i = 0; i < choices.length; i++) {
             str = str + choices[i] + ",";
         }
         str2 = str + f.getN_members() + "\n";
 
-        id++;
+        //id++;
 
         out.write(str2);
 

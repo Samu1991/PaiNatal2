@@ -36,11 +36,12 @@ public class PaiNatal_Manager {
 
 
         for (int i = 0; i < families.length; i++) {
-
+//            int temp= families[i].setId(i);
             if (i == 0) {
-                families[i] = new Family(6, f3a);
+
+                families[i]= new Family(6, i, f3a);
             } else {
-                families[i] = new Family(6, f3a);
+                families[i] = new Family(6,i, f3a);
             }
             m.writeFamilyCSVFile(families[i]);
 
@@ -52,12 +53,22 @@ public class PaiNatal_Manager {
 
         }
 
+        /*for (int i = 0; i < families.length; i++) {
 
-       // m.calculateContabilityCost();
+            System.out.println(families[i].getCost());
+
+        }*/
+
+
+            m.calculateContabilityCost();
+        System.out.println("_________________-----___________________");
         System.out.println(families[255].getCost());
         System.out.println(families[436].getCost());
         System.out.println(families[1].getCost());
         System.out.println(families[115].getCost());
+        System.out.println(families[4999].getCost());
+        System.out.println(families[600].getCost());
+
         /*
         m.selectChoice(f1);
         m.selectChoice(f2);
@@ -71,7 +82,7 @@ public class PaiNatal_Manager {
         m.print();
         */
 
-
+   //     System.out.println(families[4].getId());
     }
 
 }
