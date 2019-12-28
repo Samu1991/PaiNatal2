@@ -209,8 +209,7 @@ public class Management {
 
     public double calculateContabilityCost() throws ArrayIndexOutOfBoundsException{
         double penaltyTemp1 = 0;// penaltyTemp2, penalty = 0;
-
-        for(int i=99; i<=day.length-1;i--){
+        for(int i=99; i>=0;i--){
 
             if(i==99){
                 penaltyTemp1= ((day[i].getN_pessoas()-125/400)*(day[i].getN_pessoas()))*((0.5)+(Math.abs(day[i].getN_pessoas()- day[i].getN_pessoas())/50));
