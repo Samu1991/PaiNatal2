@@ -130,13 +130,14 @@ public class Management {
 
                 f.setFinalchoice(i);
                 familias[pos] = f;
-                writeSelectDay(f);
+                //writeSelectDay(f);
                 pos++;
 
                 day[i].setN_pessoas(day[i].getN_pessoas() + f.getN_members());
                 day[i].setN_familias(day[i].getN_familias() + 1);
 
                 selectGiftCard(i,f);
+                writeSelectDay(f);
                 return true;
                 }
             }
@@ -199,7 +200,7 @@ public class Management {
         String str = null;
         BufferedWriter out = new BufferedWriter(new FileWriter("choice.csv", true));
         double contabilidade_cost = 30;//calculateContabilityCost();
-        str= f.getId()+ "," + f.getFinalchoice() + "," + contabilidade_cost +"\n";
+        str= f.getId()+ "," + f.getFinalchoice() + "," + contabilidade_cost+"," +f.getCost()+"\n";
 
         out.write(str);
         out.close();
@@ -217,10 +218,10 @@ public class Management {
             }else{
 
 
-                penaltyTemp1= penaltyTemp1 + ((day[i].getN_pessoas()/400)*(day[i].getN_pessoas()))*((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
+                penaltyTemp1= penaltyTemp1 + ((day[i].getN_pessoas()-125/400)*(day[i].getN_pessoas()))*((1/2)+(Math.abs(day[i].getN_pessoas()- day[i+1].getN_pessoas())/50));
             }
         }
-        System.out.println(penaltyTemp1);
+       // System.out.println(penaltyTemp1);
         return penaltyTemp1;
     }
 

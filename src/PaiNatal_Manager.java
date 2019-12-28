@@ -59,8 +59,7 @@ public class PaiNatal_Manager {
 
         }*/
 
-
-            m.calculateContabilityCost();
+        System.out.println(m.calculateContabilityCost());
         System.out.println("_________________-----___________________");
         System.out.println(families[255].getCost());
         System.out.println(families[436].getCost());
